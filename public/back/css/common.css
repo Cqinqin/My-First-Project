@@ -84,6 +84,9 @@ html,body{
   /*background-color: pink;*/
   padding-left: 180px;
 }
+.lt_main.now{
+  padding-left: 0;
+}
 .lt_main .lt_topbar{
   height: 50px;
   background-color: #3c8dbc;
