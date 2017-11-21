@@ -6,12 +6,13 @@
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.css">
   <link rel="stylesheet" href="lib/nprogress/nprogress.css">
+  
   <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
   <div class="lt_aside">
     <div class="brand">
-      <a href="index.html">15</a>
+      <a href="index.html" class='now'>15</a>
     </div>
     <div class="user">
       <img src="images/default.png" alt="">
@@ -19,7 +20,7 @@
     </div>
     <div class="nav">
       <ul>
-        <li><a href="user.html"><span class='glyphicon glyphicon-user'></span>用户管理</a>
+        <li><a class='now' href="user.html"><span class='glyphicon glyphicon-user'></span>用户管理</a>
         </li>
         <li>
           <a href="javascript:;">
@@ -56,7 +57,10 @@
         <li class="active">首页</li>
       </ol>
     </div>
-    <div class="lt_content"></div>
+    <div class="lt_content">
+      <div class="pic_left pull-left"></div>
+      <div class="pic_right pull-right"></div>
+    </div>
   </div>
 <!--通过js让模态框显示与隐藏-->
   <div class="modal fade" tabindex="-1" id="logoutModal">
@@ -87,6 +91,7 @@
 <script src="lib/bootstrap/js/bootstrap.js"></script>
 <script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
 <script src="lib/nprogress/nprogress.js"></script>
+  <script src="lib/echarts/echarts.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/login.js"></script>
 <script src="js/index.js"></script>

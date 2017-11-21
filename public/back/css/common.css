@@ -98,3 +98,9 @@ html,body{
   color: #fff;
   line-height: 50px;
 }
+
+/*报表*/
+.pic_left,.pic_right{
+  width: 45%;
+  height: 400px;
+}
