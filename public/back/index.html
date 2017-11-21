@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>乐淘管理系统-登录</title>
+  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.css">
+  <link rel="stylesheet" href="lib/nprogress/nprogress.css">
+  <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+  <div class="lt_aside">
+    <div class="brand">
+      <a href="index.html">15</a>
+    </div>
+    <div class="user">
+      <img src="images/default.png" alt="">
+      <p>超级管理员</p>
+    </div>
+    <div class="nav">
+      <ul>
+        <li><a href="user.html"><span class='glyphicon glyphicon-user'></span>用户管理</a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <span class='glyphicon glyphicon-list'></span>
+            分类管理
+          </a>
+          <div class="child" style='display:block' >
+            <a href="first.html">一级分类</a>
+            <a href="second.html">二级分类</a>
+          </div>
+        </li>
+        <li>
+          <a href="product.html">
+            <span class='glyphicon glyphicon-tags'></span>
+            商品管理
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="lt_main">
+    <div class="lt_topbar">
+      <a href="javascript:;" class='pull-left icon_menu'>
+        <span class='glyphicon glyphicon-align-justify'></span>
+      </a>
+      <a href="javascript:;" class='pull-right icon_logout'>
+        <span class='glyphicon glyphicon-log-out'></span>
+      </a>
+    </div>
+    <!--面包屑导航-->
+    <div class="container-fluid">
+      <ol class="breadcrumb">
+        <li><a href="#">管理系统</a></li>
+        <li class="active">首页</li>
+      </ol>
+    </div>
+    <div class="lt_content"></div>
+  </div>
+
+
+
+
+<script src="lib/jquery/jquery.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+<script src="lib/nprogress/nprogress.js"></script>
+<script src="js/common.js"></script>
+<script src="js/login.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
