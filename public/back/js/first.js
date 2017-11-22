@@ -43,10 +43,8 @@ $(function () {
       invalid:'glyphicon glyphicon-remove',
       validating: 'glyphicon glyphicon-refresh'
     },
-    
     fields:{
       categoryName:{
-        
         validators:{
           notEmpty:{
             message:"请输入一级分类的名称"
@@ -73,7 +71,7 @@ $(function () {
           $form.data('bootstrapValidator').resetForm();
           //内容重置这个方法是dom对象的
           $form[0].reset();
-          
+
         }
       }
     })
