@@ -15,7 +15,7 @@ $(function () {
           pageSize:pageSize
         },
         success:function (info) {
-          console.log(info);
+          // console.log(info);
           $('tbody').html(template('tpl',info));
           //分页渲染
           $('#paginator').bootstrapPaginator({
@@ -52,6 +52,8 @@ $(function () {
   $('.dropdown-menu').on('click','a',function () {
     $('.dropdown-text').text($(this).text());
     $('[name="categoryId"]').val($(this).data('id'));
+ 
+    
     $form.data("bootstrapValidator").updateStatus("categoryId", "VALID");
   })
   //图片上传功能，图片上传成功后也应该做三件事情
@@ -64,6 +66,7 @@ $(function () {
       $('.img_box img').attr('src',data.result.picAddr);
     //  把图片的地址设置给brandLogo
       $('[name="brandLogo"]').val(data.result.picAddr);
+      
       $form.data('bootstrapValidator').updateStatus('brandLogo','VALID')
     }
   });
@@ -101,13 +104,13 @@ $(function () {
       
     }
   });
-  
+  $('[name="hot"]').val("0");
 //  给表单注册检验成功事件,阻止默认提交，发送ajax请求
   $form.on('success.form.bv',function (e) {
     e.preventDefault();
     $.ajax({
       type:'post',
-      url:'/category/updateSecondCategory',
+      url:'/category/addSecondCategory',
       data:$form.serialize(),
       success:function (info) {
         if (info.success){
