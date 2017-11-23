@@ -2,10 +2,10 @@
  * Created by Administrator on 2017/11/22.
  */
 $(function () {
+  //定义好参数，发送ajax请求，渲染表格然后分页功能，注意调用插件bootstrapPaginator的几个参数
   var currentPage=1;
   var pageSize=5;
   render();
-  //表格渲染和分页功能
   function render() {
       $.ajax({
         type:'get',
@@ -15,9 +15,8 @@ $(function () {
           pageSize:pageSize
         },
         success:function (info) {
-          // console.log(info);
+          console.log(info);
           $('tbody').html(template('tpl',info));
-          //分页渲染
           $('#paginator').bootstrapPaginator({
             bootstrapMajorVersion:3,
             currentPage:currentPage,
@@ -30,12 +29,13 @@ $(function () {
         }
       })
   }
-//  点击添加二级分类显示模态框,请求下拉菜单数据
+  
+//  点击添加分类按钮,显示模态框,发送ajax请求下拉菜单一级分类数据，注意此时data传参的处理
   $('.btn_add').on('click',function () {
       $('#addModal').modal('show');
     $.ajax({
       type:'get',
-      url:'/category/querySecondCategoryPaging',
+      url:'/category/queryTopCategoryPaging',
       data:{
         page:1,
         pageSize:100
@@ -47,34 +47,30 @@ $(function () {
     })
   });
   
-  //给下拉框中所有的a注册点击事件，要处理三件事1.把当前的值放到容器里面2获取当前id的值设置给隐藏域3.让他自己变成校验成功状态
-  //用updateStatus(field, status, validatorName)方法更新字段的状态
+  //点击下拉框时，此时应是委托事件，要处理三件事1.把a中的值放到span里面2获取自定义属性data-id的值设置给隐藏域3.改变字段时更新字段的状态updateStatus(field, status, validatorName)
   $('.dropdown-menu').on('click','a',function () {
     $('.dropdown-text').text($(this).text());
     $('[name="categoryId"]').val($(this).data('id'));
- 
-    
+    console.log($(this).data('id'));
     $form.data("bootstrapValidator").updateStatus("categoryId", "VALID");
   })
-  //图片上传功能，图片上传成功后也应该做三件事情
+  
+  //图片上传功能，注意fileupload方法的参数，图片上传成功后，将图片的地址设置给img_box下面的img和隐藏域,改变字段时，更新状态
   $("#fileupload").fileupload({
     dataType:"json",
-    //data：图片上传后的对象，通过e.result.picAddr可以获取上传后的图片地址done图片上传成功的回调函数
+    //data：图片上传后的对象，通过data.result.picAddr可以获取上传后的图片地址done图片上传成功的回调函数
     done:function (e, data) {
       // console.log(data);
-      //设置给img_box中 img的src属性
       $('.img_box img').attr('src',data.result.picAddr);
-    //  把图片的地址设置给brandLogo
       $('[name="brandLogo"]').val(data.result.picAddr);
-      
       $form.data('bootstrapValidator').updateStatus('brandLogo','VALID')
     }
   });
   
-  //表单校验,三个隐藏域
+  //表单校验，注意默认是hidden,disabled不校验,categoryId隐藏域，brandName,brandLogo隐藏域，
   var $form=$('form');
   $form.bootstrapValidator({
-    excluded:[], //默认hidden disabled不检验，让隐藏域里面的也校验
+    excluded:[],
     feedbackIcons: {
       valid: 'glyphicon glyphicon-ok',
       invalid: 'glyphicon glyphicon-remove',
@@ -101,11 +97,11 @@ $(function () {
             }
           }
         }
-      
     }
   });
   $('[name="hot"]').val("0");
-//  给表单注册检验成功事件,阻止默认提交，发送ajax请求
+  
+//  给表单注册检验成功事件,阻止默认提交，发送ajax请求,表单序列化传data,成功后关闭模态框，从第一页渲染，重置内容（dom对象方法）和校验样式，手动重置图片，下拉框和两个隐藏域的值
   $form.on('success.form.bv',function (e) {
     e.preventDefault();
     $.ajax({
@@ -119,7 +115,7 @@ $(function () {
           render();
         //  重置内容和样式
           $form[0].reset();
-          $form.data('b  ootstrapValidator').resetForm();
+          $form.data('bootstrapValidator').resetForm();
         //  重置下拉框组件和图片
           $('.dropdown-text').text('请选择一级分类');
           $('[name="categoryId"]').val('');

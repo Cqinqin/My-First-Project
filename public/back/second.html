@@ -14,12 +14,13 @@
     <a href="index.html">15</a>
   </div>
   <div class="user">
-    <img src="images/default.png" alt="">
+    <img src="images/default.png" alt="" class='img-circle'>
     <p>超级管理员</p>
   </div>
   <div class="nav">
     <ul>
-      <li><a  href="user.html"><span class='glyphicon glyphicon-user'></span>用户管理</a>
+      <li>
+        <a  href="user.html"><span class='glyphicon glyphicon-user'></span>用户管理</a>
       </li>
       <li>
         <a href="javascript:;">
@@ -110,7 +111,7 @@
         <h4 class="modal-title">添加分类</h4>
       </div>
       <div class="modal-body">
-        <form id="form">
+        <form id="form" autocomplete='off'>
           <div class="form-group">
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
@@ -156,6 +157,7 @@
     </div>
   </div>
 </div>
+
 <!--渲染表格-->
 <script type='text/html' id='tpl'>
  {{each rows v i}}
@@ -170,8 +172,9 @@
 </script>
 <!--动态渲染下拉菜单存取id-->
 <script type='text/html' id='tpl2'>
-  {{each  rows v i}}
-  <li><a data-id='{{v.id}}' href="javascript:;">{{v.categoryName}}</a></li>
+  {{each rows v i}}
+  <li><a data-id='{{v.id}}' href="javascript:;">{{v.categoryName}}</a>
+  </li>
   {{/each}}
 </script>
 

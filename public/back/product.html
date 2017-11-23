@@ -56,9 +56,31 @@
       <li class="active">商品管理</li>
     </ol>
   </div>
-  <div class="lt_content"></div>
+  <div class="lt_content">
+    <button class='btn btn-default mb_20 btn_addpro'>添加商品</button>
+    <table class='table table-bordered table-hover '>
+      <thead>
+        <tr>
+          <th width='5%'>序号</th>
+          <th width='25%'>商品名称</th>
+          <th width='25%'>商品描述</th>
+          <th width='10%'>商品库存</th>
+          <th width='10%'>商品尺寸</th>
+          <th width='10%'>商品状态</th>
+          <th width='15%'>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      <!--模板引擎渲染-->
+      </tbody>
+    </table>
+    <!--分页盒子-->
+    <div class="text-right">
+      <ul id='paginator'></ul>
+    </div>
+  </div>
 </div>
-<!--通过js让模态框显示与隐藏-->
+<!--通过js让退出模态框显示与隐藏-->
 <div class="modal fade" tabindex="-1" id="logoutModal">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -79,16 +101,94 @@
     </div>
   </div>
 </div>
-
-
-
+<!--表格模板-->
+<script type='text/html' id='tpl'>
+  {{each rows v i}}
+  <tr>
+    <td>{{(page-1)*size+i+1}}</td>
+    <td>{{v.proName}}</td>
+    <td>{{v.proDesc}}</td>
+    <td>{{v.num}}</td>
+    <td>{{v.size}}</td>
+    <td>{{v.statu==1?'已上架':'已下架'}}</td>
+    <td>
+    
+      <button class='btn btn-primary btn-sm'>编辑</button>
+    
+      <button class='btn btn-danger btn-sm'>下架</button>
+     
+    </td>
+  </tr>
+  {{/each}}
+</script>
+<!--添加商品模态框-->
+<div class="modal fade" tabindex="-1" id="addModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title">编辑商品</h4>
+      </div>
+      <div class="modal-body">
+        <form id='form' autocomplete='off'>
+          <div class="form-group">
+            
+            <input type="text" name='proName' class="form-control" placeholder="请输入商品名称">
+          </div>
+          <div class="form-group">
+            <textarea name="proDesc" class='form-control' placeholder='请输入商品描述'></textarea>
+          </div>
+          <div class="form-group">
+            <input name='num' type="text" class="form-control"  placeholder="请输入商品库存">
+          </div>
+          <div class="form-group">
+            <input name='price' type="text" class="form-control"  placeholder="请输入商品价格">
+          </div>
+          <div class="form-group">
+            <input name='oldPrice' type="text" class="form-control"  placeholder="请输入商品原价">
+          </div>
+          <div class="form-group">
+            <input name='size' type="text" class="form-control"  placeholder="请输入商品尺码">
+          </div>
+          <!--上传图片-->
+          <div class="form-group">
+              <div class="fileupload_box">
+                <button class='btn btn-default'>上传图片</button>
+                <input id="fileupload" type="file" name="pic1" class="btn btn-default" data-url="/product/addProductPic" multiple>
+                <span>提示：必须上传三个图片</span>
+              </div>
+          </div>
+          <div class="form-group">
+            <!--图片隐藏域-->
+            <input type="hidden" name='pic'>
+            
+          </div>
+          
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary " form='form'>添加</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="lib/jquery/jquery.js"></script>
+<!--fileupload-->
+<script src="lib/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="lib/jquery-fileupload/jquery.fileupload.js"></script>
+<!--bootstrap-->
 <script src="lib/bootstrap/js/bootstrap.js"></script>
 <script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+
+<!--artTemplate-->
+<script src="lib/artTemplate/template-web.js"></script>
 <script src="lib/nprogress/nprogress.js"></script>
 <script src="js/common.js"></script>
-<script src="js/login.js"></script>
-<script src="js/index.js"></script>
+<script src="js/product.js"></script>
+
 </body>
 </html>
