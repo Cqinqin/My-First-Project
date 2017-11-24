@@ -38,11 +38,11 @@ html,body{
   background-color: #222d32;
   /*因为要做动画*/
   /*float: left;*/
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   transition: all 1s;
-  
+  z-index: 999;
 }
 .lt_aside.now{
   left:-180px;
@@ -95,15 +95,26 @@ html,body{
   width: 100%;
   /*background-color: pink;*/
   padding-left: 180px;
+  /*transition: all 1s;*/
+  padding-top: 70px;
 }
 .lt_main.now{
-  padding-left: 0;
+  padding-left: 20px;
 }
 .lt_main .lt_topbar{
+  width: 100%;
+  position: fixed;
+  top:0;
+  left: 0;
   height: 50px;
   background-color: #3c8dbc;
   margin-bottom: 20px;
-  padding: 0 20px;
+  padding: 0 20px 0 200px;
+  z-index: 998;
+  transition: all 1s;
+}
+.lt_topbar.now{
+  padding-left: 20px;
 }
 .lt_topbar a{
   font-size: 16px;
