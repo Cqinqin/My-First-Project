@@ -1,0 +1,50 @@
+@charset "UTF-8";
+.lt_category_l{
+  width: 90px;
+  float: left;
+  height: 100%;
+  overflow: hidden;
+  /*定位是为了让后续操作都是在盒子内移动*/
+  position: relative;
+  
+}
+/*overflow:hidden 触发了bfc,bfc不需要清除浮动*/
+.lt_category_r{
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  /*background-color: #ffff00;*/
+}
+.lt_category_l a{
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  background-color: #ccc;
+  border-right: 1px solid red;
+  border-bottom: 1px solid red;
+}
+.lt_category_l li.now a {
+  border-right: none;
+  background-color: #fff;
+}
+.lt_category_r li{
+  width: 33.3%;
+  float: left;
+
+  
+}
+.lt_category_r img{
+  height: 62px;
+  width: 62px;
+  /*图片在盒子中居中*/
+  margin: 0 auto;
+}
+.lt_category_r p {
+  text-align: center;
+}
+.category_tips {
+  padding: 10px;
+  font-size: 12px;
+}

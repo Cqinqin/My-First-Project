@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>乐淘商城-首页</title>
+  <link rel="icon" href="favicon.ico" type='image/x-icon'>
+  <!--引入mui.css-->
+  <link rel="stylesheet" href="lib/mui/css/mui.css">
+  <!--引入font-awesome.css-->
+  <link rel="stylesheet" href="lib/fa/css/font-awesome.css">
+  
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/category.css">
+</head>
+<body>
+<div class="lt_container">
+  <div class="lt_header">
+    <!--javascript:伪协议，href本来是要跳转，JavaScript:页面不跳转执行js代码,-->
+    <a class="icon_left" href="javascript:history.go(-1)"><span class="mui-icon mui-icon-back"></span></a>
+    <h4>乐淘云购</h4>
+    <a class="icon_right" href="search.html"><span class="fa fa-search"></span></a>
+  </div>
+  <div class="lt_main">
+    <div class="lt_category_l">
+      <div class="mui-scroll-wrapper">
+        <ul class="mui-scroll">
+        <!--这里放置真实显示的DOM内容-->
+          <!--模板引擎动态渲染-->
+
+        </ul>
+      </div>
+    </div>
+    <div class="lt_category_r">
+      <div class="mui-scroll-wrapper">
+        <ul class="mui-scroll">
+          <!--这里放置真实显示的DOM内容-->
+          <!--模板引擎动态渲染-->
+        </ul>
+      </div>
+          
+    </div>
+    </div>
+    <div class="lt_footer">
+      <ul>
+        <li><a href="index.html">
+          <span class='fa fa-home'></span>
+          <p>首页</p>
+        </a>
+        </li>
+        <li class='now'>
+          <a href="category.html">
+            <span class='fa fa-bars'></span>
+            <p>分类</p>
+          </a>
+        </li>
+        <li>
+          <a href="cart.html">
+            <span class="fa fa-shopping-cart"></span>
+            <p>购物车</p>
+          </a>
+        </li>
+        <li>
+          <a href="user.html">
+            <span class="fa fa-user"></span>
+            <p>会员中心</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+<!--左边二级分类模板-->
+<!--还要为第一个li设置class类-->
+<script type='text/html' id='tpl_l'>
+{{each rows v i}}
+  <li data-id='{{v.id}} ' class='{{ i==0?"now":"" }}'>
+    <a href="javascript:;">{{v.categoryName}}</a>
+  </li>
+  {{/each}}
+</script>
+
+<!--右边分类模板,为了用户体验，加个提示-->
+<script type='text/html' id='tpl_r'>
+  {{if rows.length==0}}
+  <div class='category_tips'>该分类下暂时没有更多品牌信息</div>
+  {{/if}}
+{{each rows v i}}
+<li>
+  <a href="#">
+    <img src="{{v.brandLogo?v.brandLogo:'images/none.png'}}" alt="">
+    <p>{{v.brandName}}</p>
+  </a>
+</li>
+  {{/each}}
+</script>
+
+
+
+
+  
+  <!--引入mui.js-->
+  <script src="lib/mui/js/mui.js"></script>
+<!--引入zepto-->
+<script src="lib/zepto/zepto.min.js"></script>
+<!--引入arttmplate-->
+<script src="lib/artTemplate/template-web.js"></script>
+  <script src="js/common.js"></script>
+<script src="js/category.js"></script>
+</body>
+</html>
