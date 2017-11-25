@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  function getSearchObj() {
+    var search=location.search;
+    search=decodeURI(search);
+    search=search.slice(1);//去除问号
+    var arr=search.split('&');
+    var obj={};
+    arr.forEach(function (v) {
+      var key=v.split('=')[0];
+      var value=v.split('=')[1];
+      obj[key]=value;
+    })
+  };
+  function getSearch(key) {
+      return
+  }
+//  获取地址栏的 参数传递给input
+//  用于发送请求，传不同的参数，获取对应的数据 渲染到页面
+  var currentPage=1;
+  var pageSize=100;
+  function render() {
+    var param={};
+    param.page=currentPage;
+    param.pageSize=pageSize;
+//    设置proName参数
+    var key=$('.search_input').val().trim();
+    if (key==''){
+//      消息提示
+    }
+    param.proName=key;
+//    对于price和num参数时 ，点击的时候才会发送，
+    var $now=$('.lt_sort a.now');
+    if($now.length>0){
+//      说明至少一个被点击了需要排序，需要获取到是谁
+      var type=$now.data('type');
+      var value=$now.find('span').hasClass('fa-angle-down')?2:1;
+      param[type]=value;
+    }
+    
+      $.ajax({
+        type:'get',
+        url:'',
+        data:param,
+        success:function (info) {
+          $('.lt_product').html(template('tpl',info));
+        }
+      })
+  };
+//  页面加载需要渲染一次
+  render();
+//  点击按钮需要渲染一次,把所有的now清除 把所有箭头向下
+  $('.search_btn').on('click',function () {
+    render();
+    $()
+  });
+//  点击排序的时候还需要渲染
+  $('.lt_sort [data-type]').on('click',function () {
+//    有now这个类就换箭头
+//    没有now这个类就移除别人添加自己，所有箭头向下
+    var $this=$(this);
+    if ($this.hasClass('now')){
+      $this.find('span').toggleClass('fa-angle-down').toggleClass('fa-angle-up');
+      
+    }else{
+      
+    }
+    
+    
+  })
+  
+
+  
+  
+  
+  
+</script>
+</body>
+</html>

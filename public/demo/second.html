@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="lt_aside">
+  <div class="logo">
+    <a href="index.html">15</a>
+  </div>
+  <div class="user">
+    <img src="" alt="">
+    <p></p>
+  </div>
+  <div class="nav">
+    <ul>
+      <li>
+        <a href=""><span></span>用户管理</a>
+      </li>
+      <li>
+        <a href=""><span></span></a>
+        <div class="child" style='display: block'>
+          <a href="first.html">一级分类</a>
+          <a href="second.html" class='now'>二级分类</a>
+        </div>
+      </li>
+      <li></li>
+    </ul>
+  </div>
+</div>
+<div class="lt_main">
+  <div class="lt_topbar">
+    <a href="javascript:;" class='pull-left' icon_menu> <span></span></a>
+    <a href="javascript:;" class='pull-right icon_logout'><span></span></a>
+   
+  </div>
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Library</a></li>
+      <li class="active">Data</li>
+    </ol>
+  </div>
+  <div class="lt_content">
+    <button class='btn btn-default btn_add mb_20'>添加分类</button>
+    <table class='table table-bordered table-hover'>
+      <theade>
+        <tr>
+          <td width='10%'></td>
+          <td width='30%'></td>
+        </tr>
+      </theade>
+      <tbody>
+      <!--模板引擎动态渲染-->
+      </tbody>
+    </table>
+    <!--分页盒子-->
+    <div class="text-right">
+      <ul id="paginator"></ul>
+    </div>
+    
+  </div>
+</div>
+<!--退出模态框-->
+<div class="modal fade" tabindex="-1" id="logoutMadal">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">温馨提示</h4>
+      </div>
+      <div class="modal-body">
+        <p><span></span>你确定要退出后台管理系统吗</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary btn_logout">退出</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--添加分类的模态框-->
+<div class="modal fade" tabindex="-1" id="addMadal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加分类</h4>
+      </div>
+      <div class="modal-body">
+        <form id='form'>
+          <div class="form-group">
+        <!--button:id -->
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id='dropdownMenu1'>
+                <span class='dropdown-text'>请选择一级分类</span>
+                 <span class="caret"></span>
+              </button>
+            <!--写个隐藏域传的是一级分类的id,因为最后添加分类向后台获取数据，需要有三个参数，需要通过隐藏域传过去,brandName不用-->
+            <input type="hidden" name='categoryId'>
+              <ul class="dropdown-menu">
+                <!--动态渲染-->
+              </ul>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="brandName" placeholder="请输入二级分类的名称">
+          </div>
+          <!--处理上传图片的按钮-->
+          <div class="form-group">
+            <div class="fileupload_box">
+              <button class='btn btn-dafault'>上传图片 </button>
+              <!--用的图片上传插件-->
+              <input type="file" id="fileupload" type="file" name="files" data-url="/category/addSecondCategoryPic" name='pic1'>
+            </div>
+            
+          
+          </div>
+          <div class="form-grop img_box">
+            <img src="images/none.png" alt="" width='100' height='100'>
+            <!--隐藏域，传递brandLogo-->
+            <input type="hidden" name='brandLogo'>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <!--form='form',form表单的id,可以通过这个属性将写在外面的 内容关联到表单里面-->
+        <button type="submit" form='form' class="btn btn-primary btn_confirm">添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--一级分类渲染-->
+<script type='text/html' id='tpl2'>
+  {{each rows v i}}
+  <li>
+    <a href="javascript:;" data-id='{{v.id}}'>{{v.categoryName}}</a>
+  </li>
+  {{/each}}
+</script>
+
+</body>
+</html>

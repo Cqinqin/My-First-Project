@@ -15,3 +15,23 @@ mui('.mui-scroll-wrapper').scroll({
 mui(".mui-slider").slider({
   interval: 1000
 });
+
+var tools={
+  getSearchObj:function () {
+    var search=location.search;
+    search=decodeURI(search);
+    search=search.slice(1);
+    var arr=search.split('&');
+    var obj={};
+    arr.forEach(function (v) {
+      var key=v.split('=')[0];
+      var value=v.split('=')[1];
+      obj[key]=value;
+    });
+    return obj;
+  },
+  getSearch:function (key) {
+    return this.getSearchObj()[key];
+  }
+}
+
